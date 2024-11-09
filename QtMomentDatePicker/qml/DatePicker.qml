@@ -39,6 +39,10 @@ Popup {
             Button{
                 text: "<"
                 flat: true
+
+                onClicked: {
+                    prevMonth()
+                }
             }
 
             Item{
@@ -47,7 +51,7 @@ Popup {
 
                 Label{
                     anchors.fill: parent
-                    text: "2023"
+                    text: M.moment(selectedDate, "YYYY/MM/DD").year()
                     horizontalAlignment: "AlignRight"
                     verticalAlignment: "AlignVCenter"
                 }
@@ -59,7 +63,7 @@ Popup {
 
                 Label{
                     anchors.fill: parent
-                    text: "Oct"
+                    text: monthModel.get(M.moment(selectedDate, "YYYY/MM/DD").month()).value
                     horizontalAlignment: "AlignLeft"
                     verticalAlignment: "AlignVCenter"
                 }
@@ -69,6 +73,10 @@ Popup {
             Button{
                 text: ">"
                 flat: true
+
+                onClicked: {
+                    nextMonth()
+                }
             }
         }
 
@@ -157,37 +165,40 @@ Popup {
     ListModel{
         id: monthModel
         ListElement{
-            value: "January"
+            value: "Jan"
         }
         ListElement{
-            value: "February"
+            value: "Feb"
         }
         ListElement{
-            value: "March"
+            value: "Mar"
         }
         ListElement{
-            value: "April"
+            value: "Apr"
         }
         ListElement{
             value: "May"
         }
         ListElement{
-            value: "June"
+            value: "Jun"
         }
         ListElement{
-            value: "July"
+            value: "Jul"
         }
         ListElement{
-            value: "September"
+            value: "Aug"
         }
         ListElement{
-            value: "October"
+            value: "Sep"
         }
         ListElement{
-            value: "November"
+            value: "Oct"
         }
         ListElement{
-            value: "December"
+            value: "Nov"
+        }
+        ListElement{
+            value: "Dec"
         }
     }
     ListModel{
@@ -233,5 +244,29 @@ Popup {
                                      today: currentDate===(i+1)
                                  })
         }
+    }
+
+    function nextMonth(){
+        // Define the selected date
+        let targetDate = M.moment(selectedDate, "YYYY/MM/DD");
+
+        // Add one month to the selected date
+        let newDate = targetDate.add(1, 'months');
+
+        selectedDate= newDate.format("YYYY/MM/DD")
+
+        determineDate()
+    }
+
+    function prevMonth(){
+        // Define the selected date
+        let targetDate = M.moment(selectedDate, "YYYY/MM/DD");
+
+        // Add one month to the selected date
+        let newDate = targetDate.subtract(1, 'months');
+
+        selectedDate= newDate.format("YYYY/MM/DD")
+
+        determineDate()
     }
 }
