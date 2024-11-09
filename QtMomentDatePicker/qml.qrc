@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/moment.js</file>
+        <file>qml/DatePicker.qml</file>
+        <file>qml/DatePickerCell.qml</file>
+    </qresource>
+</RCC>
