@@ -12,6 +12,15 @@ Popup {
     visible: true
     modal: true
 
+    //Properties
+    property string selectedDate: "2024/11/09"
+    //Signals
+    signal clear()
+
+    Component.onCompleted: {
+        determineDate()
+    }
+
     ColumnLayout{
         id: mainColumn
         width: parent.width
@@ -63,15 +72,66 @@ Popup {
             }
         }
 
-        Flow{
-            id: flow
-            Layout.fillWidth: true
-            spacing: 2
+        ColumnLayout{
+            spacing: 0
 
-            Repeater{
-                model: 30
-                delegate: DatePickerCell{
-                    text: String(index)
+            RowLayout{
+                spacing: 2
+
+                DatePickerCell{
+                    text: "Su"
+                    weight: Font.DemiBold
+                }
+                DatePickerCell{
+                    text: "Mo"
+                    weight: Font.DemiBold
+                }
+                DatePickerCell{
+                    text: "Tu"
+                    weight: Font.DemiBold
+                }
+                DatePickerCell{
+                    text: "We"
+                    weight: Font.DemiBold
+                }
+                DatePickerCell{
+                    text: "Th"
+                    weight: Font.DemiBold
+                }
+                DatePickerCell{
+                    text: "Fr"
+                    weight: Font.DemiBold
+                }
+                DatePickerCell{
+                    text: "Sa"
+                    weight: Font.DemiBold
+                }
+            }
+
+            Flow{
+                id: flow
+                Layout.fillWidth: true
+                spacing: 2
+
+                Repeater{
+                    model: daysModel
+                    delegate: DatePickerCell{
+                        id: rootDelegate
+                        text: String(value)
+                        isToday: today
+
+                        onClicked: {
+                            root.clear()
+                            selected= true
+                        }
+
+                        Connections{
+                            target: root
+                            onClear: {
+                                rootDelegate.selected= false
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -87,6 +147,91 @@ Popup {
                 text: "Ok"
                 flat: true
             }
+        }
+    }
+
+    //Data models
+    ListModel{
+        id: daysModel
+    }
+    ListModel{
+        id: monthModel
+        ListElement{
+            value: "January"
+        }
+        ListElement{
+            value: "February"
+        }
+        ListElement{
+            value: "March"
+        }
+        ListElement{
+            value: "April"
+        }
+        ListElement{
+            value: "May"
+        }
+        ListElement{
+            value: "June"
+        }
+        ListElement{
+            value: "July"
+        }
+        ListElement{
+            value: "September"
+        }
+        ListElement{
+            value: "October"
+        }
+        ListElement{
+            value: "November"
+        }
+        ListElement{
+            value: "December"
+        }
+    }
+    ListModel{
+        id: yearModel
+        ListElement{
+            value: "2024"
+        }
+        ListElement{
+            value: "2025"
+        }
+        ListElement{
+            value: "2026"
+        }
+        ListElement{
+            value: "2027"
+        }
+        ListElement{
+            value: "2028"
+        }
+        ListElement{
+            value: "2029"
+        }
+    }
+
+    //Functions
+    function determineDate(){
+        daysModel.clear()
+        const momentSelectedDate= M.moment(selectedDate)
+        const currentDate= M.moment(selectedDate).date() //1-31
+        let firstDayOfMonth = momentSelectedDate.startOf('month');
+        let firstDayWeekday = firstDayOfMonth.day();
+
+
+        for(var i=-firstDayWeekday; i<momentSelectedDate.daysInMonth(); i++){
+            if(i<0)
+                daysModel.append({
+                                     value: "",
+                                     today: false
+                                 })
+            else
+                daysModel.append({
+                                     value: (i+1).toString(),
+                                     today: currentDate===(i+1)
+                                 })
         }
     }
 }

@@ -15,7 +15,6 @@ Window {
         width: 250
 
         TextField{
-            anchors.centerIn: parent
             Layout.fillWidth: true
             placeholderText: "Select a Date"
 
