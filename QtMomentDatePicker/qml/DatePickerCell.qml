@@ -5,9 +5,9 @@ import "qrc:/qml/moment.js" as M
 
 Item{
     id: root
-    Layout.preferredWidth: (flow.width-flow.spacing*6)/7
+    Layout.preferredWidth: {try{return flow ? (flow.width-flow.spacing*6)/7 : 0}catch(err){return 0}}
     Layout.preferredHeight: width
-    width: (flow.width-flow.spacing*6)/7
+    width: {try{return flow ? (flow.width-flow.spacing*6)/7 : 0}catch(err){return 0}}
     height: width
 
     //Properties

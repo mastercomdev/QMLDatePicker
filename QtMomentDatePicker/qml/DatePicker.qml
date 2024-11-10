@@ -14,7 +14,7 @@ Popup {
 
     //Properties
     property string selectedDate: "2024/11/09"
-    property string view: "Month"
+    property string view: "Date"
     //Signals
     signal clear()
 
@@ -56,6 +56,13 @@ Popup {
                     horizontalAlignment: "AlignRight"
                     verticalAlignment: "AlignVCenter"
                 }
+
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        view= "Year"
+                    }
+                }
             }
 
             Item{
@@ -67,6 +74,13 @@ Popup {
                     text: monthModel.get(M.moment(selectedDate, "YYYY/MM/DD").month()).value
                     horizontalAlignment: "AlignLeft"
                     verticalAlignment: "AlignVCenter"
+                }
+
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        view= "Month"
+                    }
                 }
             }
 
@@ -86,7 +100,8 @@ Popup {
             Layout.fillWidth: true
             Layout.preferredHeight: item.height
             source: root.view==="Date"  ? "DatePickerDate.qml" :
-                    root.view==="Month" ? "DatePickerDateMonth.qml" : ""
+                    root.view==="Month" ? "DatePickerDateMonth.qml" :
+                                          "qrc:/qml/DatePickerDateYear.qml"
         }
 
         RowLayout{

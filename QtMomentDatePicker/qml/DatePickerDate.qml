@@ -64,7 +64,7 @@ Item{
 
                     Connections{
                         target: root
-                        onClear: {
+                        function onClear(){
                             rootDelegate.selected= false
                         }
                     }

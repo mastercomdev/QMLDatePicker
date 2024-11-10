@@ -16,8 +16,8 @@ Item{
         anchors.fill: parent
         cellWidth: width/3-1
         cellHeight: height/4
-        interactive: false
-        model: monthModel
+        interactive: contentHeight>height
+        model: yearModel
         delegate: DatePickerCell{
             width: GridView.view.cellWidth
             height: GridView.view.cellHeight
@@ -26,7 +26,7 @@ Item{
 
             onClicked: {
                 const momentSelectedDate= M.moment(selectedDate)
-                selectedDate= M.moment(selectedDate).month(index).format("YYYY/MM/DD")
+                selectedDate= M.moment(selectedDate).year(yearModel.get(index).value).format("YYYY/MM/DD")
                 gridview.currentIndex= index
                 determineDate()
                 view= "Date"
@@ -36,8 +36,13 @@ Item{
 
     function determineMonth(){
         const momentSelectedDate= M.moment(selectedDate)
-        const currentMonth= M.moment(selectedDate).month() //1-31
+        const currentYear= M.moment(selectedDate).year().toString() //1-31
 
-        gridview.currentIndex= currentMonth
+        console.log(currentYear)
+        for(var i=0; i<yearModel.count; i++){
+            if(currentYear===yearModel.get(i).value){
+                gridview.currentIndex= i
+            }
+        }
     }
 }

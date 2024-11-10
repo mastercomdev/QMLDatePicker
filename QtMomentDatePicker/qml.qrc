@@ -6,5 +6,6 @@
         <file>qml/DatePickerCell.qml</file>
         <file>qml/DatePickerDate.qml</file>
         <file>qml/DatePickerDateMonth.qml</file>
+        <file>qml/DatePickerDateYear.qml</file>
     </qresource>
 </RCC>
