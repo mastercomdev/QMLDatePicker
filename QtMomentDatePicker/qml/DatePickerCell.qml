@@ -5,6 +5,8 @@ import "qrc:/qml/moment.js" as M
 
 Item{
     id: root
+    Layout.preferredWidth: (flow.width-flow.spacing*6)/7
+    Layout.preferredHeight: width
     width: (flow.width-flow.spacing*6)/7
     height: width
 

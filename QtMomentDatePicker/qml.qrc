@@ -4,5 +4,7 @@
         <file>qml/moment.js</file>
         <file>qml/DatePicker.qml</file>
         <file>qml/DatePickerCell.qml</file>
+        <file>qml/DatePickerDate.qml</file>
+        <file>qml/DatePickerDateMonth.qml</file>
     </qresource>
 </RCC>

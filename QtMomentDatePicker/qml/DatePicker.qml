@@ -14,6 +14,7 @@ Popup {
 
     //Properties
     property string selectedDate: "2024/11/09"
+    property string view: "Month"
     //Signals
     signal clear()
 
@@ -80,68 +81,12 @@ Popup {
             }
         }
 
-        ColumnLayout{
-            spacing: 0
-
-            RowLayout{
-                spacing: 2
-
-                DatePickerCell{
-                    text: "Su"
-                    weight: Font.DemiBold
-                }
-                DatePickerCell{
-                    text: "Mo"
-                    weight: Font.DemiBold
-                }
-                DatePickerCell{
-                    text: "Tu"
-                    weight: Font.DemiBold
-                }
-                DatePickerCell{
-                    text: "We"
-                    weight: Font.DemiBold
-                }
-                DatePickerCell{
-                    text: "Th"
-                    weight: Font.DemiBold
-                }
-                DatePickerCell{
-                    text: "Fr"
-                    weight: Font.DemiBold
-                }
-                DatePickerCell{
-                    text: "Sa"
-                    weight: Font.DemiBold
-                }
-            }
-
-            Flow{
-                id: flow
-                Layout.fillWidth: true
-                spacing: 2
-
-                Repeater{
-                    model: daysModel
-                    delegate: DatePickerCell{
-                        id: rootDelegate
-                        text: String(value)
-                        isToday: today
-
-                        onClicked: {
-                            root.clear()
-                            selected= true
-                        }
-
-                        Connections{
-                            target: root
-                            onClear: {
-                                rootDelegate.selected= false
-                            }
-                        }
-                    }
-                }
-            }
+        Loader{
+            id: loader
+            Layout.fillWidth: true
+            Layout.preferredHeight: item.height
+            source: root.view==="Date"  ? "DatePickerDate.qml" :
+                    root.view==="Month" ? "DatePickerDateMonth.qml" : ""
         }
 
         RowLayout{
