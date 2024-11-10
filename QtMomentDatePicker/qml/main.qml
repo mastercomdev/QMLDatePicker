@@ -17,14 +17,15 @@ Window {
         TextField{
             Layout.fillWidth: true
             placeholderText: "Select a Date"
+            text: datePicker.selectedDate
 
             onPressed: {
-                console.log("Pressed")
+                datePicker.open()
             }
         }
     }
 
     DatePicker{
-
+        id: datePicker
     }
 }

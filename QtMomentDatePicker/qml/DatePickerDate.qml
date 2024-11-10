@@ -60,6 +60,10 @@ Item{
                     onClicked: {
                         root.clear()
                         selected= true
+                        const momentSelectedDate= M.moment(selectedDate)
+                        let firstDayOfMonth = momentSelectedDate.startOf('month');
+                        let firstDayWeekday = firstDayOfMonth.day();
+                        selectedDate= M.moment(selectedDate).date(index+1-firstDayWeekday).format("YYYY/MM/DD")
                     }
 
                     Connections{

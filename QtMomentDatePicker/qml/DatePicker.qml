@@ -9,17 +9,22 @@ Popup {
     y: parent.height/2-height/2
     width: 300
     height: mainColumn.height+padding*2
-    visible: true
     modal: true
 
     //Properties
     property string selectedDate: "2024/11/09"
+    property string backupSelectedDate: "0000/00/00"
     property string view: "Date"
     //Signals
     signal clear()
+    signal accepted()
+    signal rejected()
 
     Component.onCompleted: {
         determineDate()
+    }
+    onAboutToShow: {
+        backupSelectedDate= selectedDate
     }
 
     ColumnLayout{
@@ -110,10 +115,22 @@ Popup {
             Button{
                 text: "Cancel"
                 flat: true
+
+                onClicked: {
+                    root.rejected()
+                    root.close()
+                    root.clear()
+                    selectedDate= backupSelectedDate
+                }
             }
             Button{
                 text: "Ok"
                 flat: true
+
+                onClicked: {
+                    root.accepted()
+                    root.close()
+                }
             }
         }
     }
