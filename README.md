@@ -1,4 +1,7 @@
-# Date Picker Component README
+# Date Picker Component
+
+![Day Preview](Preview/Day.PNG)
+![Day Preview](Preview/Month.PNG)
 
 ## Overview
 This project is a custom **Date Picker** component built using **Qt Quick** and **Qt Quick Controls**. It allows the user to select a date by navigating through years, months, and days. The component provides a clean and interactive popup with options to cancel or confirm the date selection.
