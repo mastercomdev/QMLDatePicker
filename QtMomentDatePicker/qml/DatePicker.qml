@@ -12,9 +12,10 @@ Popup {
     modal: true
 
     //Properties
-    property string selectedDate: "2024/11/09"
+    property string selectedDate: M.moment().format("YYYY/MM/DD")
     property string backupSelectedDate: "0000/00/00"
     property string view: "Date"
+    property bool darkTheme: true
     //Signals
     signal clear()
     signal accepted()
