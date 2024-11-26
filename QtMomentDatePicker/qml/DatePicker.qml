@@ -106,7 +106,7 @@ Popup {
             Layout.preferredHeight: item.height
             source: root.view==="Date"  ? "DatePickerDate.qml" :
                     root.view==="Month" ? "DatePickerDateMonth.qml" :
-                                          "qrc:/qml/DatePickerDateYear.qml"
+                                          "DatePickerDateYear.qml"
         }
 
         RowLayout{
