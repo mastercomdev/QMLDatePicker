@@ -48,7 +48,7 @@ Item{
         horizontalAlignment: "AlignHCenter"
         verticalAlignment: "AlignVCenter"
         text: root.text
-        color: isToday ? "white" : "black"
+        color: isToday ? "white" : darkTheme ? "white" : "black"
     }
 
     Button{
