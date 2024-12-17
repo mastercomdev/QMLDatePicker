@@ -96,7 +96,7 @@ DatePicker {
 ## License
 This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
-## Author 👨‍💻
+## Author
 
 Developed by Mehran from mastercom© team with inspiration from the **React-Toastify.js** library.
 
