@@ -96,6 +96,12 @@ DatePicker {
 ## License
 This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
+## Author 👨‍💻
+
+Developed by Mehran from mastercom© team with inspiration from the **React-Toastify.js** library.
+
+Feel free to check out our gigs on [fiverr](https://www.fiverr.com/mastercom_co), for your QML needs 😉
+
 ## Contributing
 Feel free to fork this project, report issues, and submit pull requests. If you encounter bugs or have suggestions for improvements, please open an issue.
 
